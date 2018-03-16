@@ -20,7 +20,7 @@ class TimeController extends Controller {
     async modify() {
       let {_id} = this.ctx.params;
       let body = this.ctx.request.body;
-      console.log(body);
+
       let result = await this.ctx.service.time.modify(_id, body);
       this.success('信息已修改。');
     }

@@ -9,21 +9,46 @@ class TimeService extends Service {
     async create(body) {
         let {_id, title, start, end, backgroundColor} = body;
 
-        let _date = new Date(start);
+        let sDate = new Date(start);
+        let eDate = new Date(end);
+
+        let startHours = sDate.getHours() + (sDate.getMinutes() === 30 ? 0.5 : 0);
+        let endHours = eDate.getHours() + (eDate.getMinutes() === 30 ? 0.5 : 0);
+        let sum = (endHours - startHours) * 2;
+
         let date = {
-            year: _date.getFullYear(),
-            month: _date.getMonth() + 1,
-            day: _date.getDate(),
-            startTime: _date.getTime(),
-            endTime: new Date(end).getTime()
+            year: sDate.getFullYear(),
+            month: sDate.getMonth() + 1,
+            day: sDate.getDate(),
+            startTime: sDate.getTime(),
+            endTime: eDate.getTime()
         };
 
-        let result = await this.ctx.model.Time.create({title, start, end, backgroundColor, date, _id});
+        let result = await this.ctx.model.Time.create({title, start, end, backgroundColor, date, _id, sum});
         return result;
     }
 
     async modify(_id, body) {
+        let {start, end} = body;
         delete body._id;
+
+        if (start && end) {
+            let sDate = new Date(start);
+            let eDate = new Date(end);
+
+            let startHours = sDate.getHours() + (sDate.getMinutes() === 30 ? 0.5 : 0);
+            let endHours = eDate.getHours() + (eDate.getMinutes() === 30 ? 0.5 : 0);
+            body.sum = (endHours - startHours) * 2;
+
+            body.date = {
+                year: sDate.getFullYear(),
+                month: sDate.getMonth() + 1,
+                day: sDate.getDate(),
+                startTime: sDate.getTime(),
+                endTime: eDate.getTime()
+            };
+        }
+
         let result = await this.ctx.model.Time.findOneAndUpdate({_id}, {$set: body});
         return result;
     }

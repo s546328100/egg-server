@@ -7,6 +7,7 @@ module.exports = app => {
         start: { type: String },
         end: { type: String },
         backgroundColor: { type: String },
+        sum: { type: Number },
         date: {
             year: { type: Number },
             month: { type: Number },
