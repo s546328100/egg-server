@@ -2,10 +2,9 @@
 
 const Controller = require('../core/base_controller');
 
-let events = [];
-
 class TimeController extends Controller {
     async list() {
+        console.log(this.ctx.session);
         let result = await this.ctx.service.time.list();
         // this.success(result);
         this.ctx.body = result;

@@ -11,7 +11,7 @@ module.exports = appInfo => {
     config.security = {
         csrf: {
             enable: false
-        },
+        }
     };
 
     config.cors = {
@@ -21,8 +21,15 @@ module.exports = appInfo => {
     };
 
     config.mongoose = {
-        url: 'mongodb://localhost/sss',
+        url: 'mongodb://39.106.220.86:27017/Sss',
         options: {}
+    };
+
+    config.email = {
+        username: 's546328100@163.com',
+        password: 's983922645',
+        host: 'smtp.163.com',
+        sender: 's546328100@163.com'
     };
 
     return config;
