@@ -4,6 +4,7 @@ const {uuid} = require('../lib/util');
 class EmailService extends Service {
     async send(email) {
         const {ctx, app} = this;
+        let text = uuid(8, 16);
         let attachment = [
             {
                 data: `<div style="width: 520px; background: #f2f2f2; padding: 4px; margin: 0 auto;">
@@ -13,7 +14,7 @@ class EmailService extends Service {
                                         邮箱验证
                                     </h1>
                                     <p style="font-weight: bold; font-size: 18px;">
-                                        您的验证码为：<span style="color: #df3539;">${uuid(8, 16)}</span>
+                                        您的验证码为：<span style="color: #df3539;">${text}</span>
                                     </p>
                                     <p style="color: #666; margin-bottom: 80px; font-style: italic;">
                                         有效时间为 30 分钟，请及时注册!
@@ -27,7 +28,7 @@ class EmailService extends Service {
                 alternative: true
             }
         ];
-        let result = await app.email.sendEmail('邮箱验证码 By Time-Gold', uuid(8, 16), email, attachment);
+        let result = await app.email.sendEmail('邮箱验证码 By Time-Gold', text, email, attachment);
         return result;
     }
 }

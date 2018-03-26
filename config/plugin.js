@@ -16,3 +16,8 @@ exports.email = {
     enable: true,
     package: 'egg-mail'
 };
+
+exports.redis = {
+    enable: true,
+    package: 'egg-redis'
+};

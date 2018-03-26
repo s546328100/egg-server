@@ -11,4 +11,6 @@ module.exports = app => {
     router.post('/time/remove/:_id', controller.time.remove);
 
     router.post('/email/send', controller.email.send);
+
+    router.post('/user/create', controller.user.create);
 };

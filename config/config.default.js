@@ -32,5 +32,14 @@ module.exports = appInfo => {
         sender: 's546328100@163.com'
     };
 
+    config.redis = {
+        client: {
+            port: 6379,
+            host: '127.0.0.1',
+            password: 'auth',
+            db: 0
+        }
+    };
+
     return config;
 };

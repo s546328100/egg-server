@@ -7,6 +7,13 @@ class BaseController extends Controller {
             result: data
         };
     }
+
+    fail(data, code = 1000) {
+        this.ctx.body = {
+            code: code,
+            result: data
+        };
+    }
 }
 
 module.exports = BaseController;
