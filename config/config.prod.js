@@ -21,7 +21,7 @@ module.exports = appInfo => {
     };
 
     config.mongoose = {
-        url: 'mongodb://39.106.220.86:27017/Sss',
+        url: 'mongodb://127.0.0.1:27017/Sss',
         options: {}
     };
 
